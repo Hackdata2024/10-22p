@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart'; // Import Firestore
 import 'package:device_preview/device_preview.dart';
+import 'package:untitled/splashing.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -15,15 +16,24 @@ void main() async {
       ));
   runApp(DevicePreview(builder: (context)=>MyApp()));
 }
-
-
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: SplashScreen(),
+    );
+  }
+}
+
+class Myxpp extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _confirmPasswordController = TextEditingController();
 
-  MyApp({super.key});
+  Myxpp({super.key});
 
   @override
   Widget build(BuildContext context) {
