@@ -16,6 +16,8 @@ class _NavigationExampleState extends State<NavigationExample> {
     final ThemeData theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
+        scrolledUnderElevation: 0,
         title: Image.asset(
           'images/logo_app_fi.png',
           fit: BoxFit.contain,
@@ -39,8 +41,8 @@ class _NavigationExampleState extends State<NavigationExample> {
             label: 'Home',
           ),
           NavigationDestination(
-            icon: Badge(child: Icon(Icons.add)),
-            label: 'Add',
+            icon: Badge(child: Icon(Icons.notifications_sharp)),
+            label: 'Notifications',
           ),
           NavigationDestination(
             icon: Badge(
@@ -192,7 +194,7 @@ class FirstRowCardBigger extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.person),
             title: Text("Hi, Raghav"),
-            subtitle: Text("Your Points: 100"),
+            subtitle: Text("Your Points: "),
           ),
           Padding(
             padding: EdgeInsets.all(16.0),
@@ -244,8 +246,7 @@ class CardWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Icon(iconData, size: 32, color: Colors.white60,),
-                // Adjust the size as needed
+                Icon(iconData, size: 32, color: Colors.white60,), // Adjust the size as needed
                 Text(
                   headingText,
                   style: const TextStyle(
@@ -266,6 +267,6 @@ class CardWidget extends StatelessWidget {
         ),
       ),
     );
+
   }
 }
-
