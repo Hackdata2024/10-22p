@@ -216,7 +216,7 @@ class Myxpp extends StatelessWidget {
         // Navigate to the home page
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => MyHome()), // Replace YourHomePage() with your actual home page widget
+          MaterialPageRoute(builder: (context) => NavigationExample()), // Replace YourHomePage() with your actual home page widget
         );
       }
     } catch (e) {
