@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/recycle_material.dart';
+import 'package:untitled/upload_scree.dart';
 class NavigationExample extends StatefulWidget {
   const NavigationExample({super.key});
 
@@ -53,31 +54,7 @@ class _NavigationExampleState extends State<NavigationExample> {
       ),
       body: <Widget>[
         const MyHome(),
-
-        /// Notifications page
-        const Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Column(
-            children: <Widget>[
-              Card(
-                child: ListTile(
-                  leading: Icon(Icons.notifications_sharp),
-                  title: Text('Notification 1'),
-                  subtitle: Text('This is a notification'),
-                ),
-              ),
-              Card(
-                child: ListTile(
-                  leading: Icon(Icons.notifications_sharp),
-                  title: Text('Notification 2'),
-                  subtitle: Text('This is a notification'),
-                ),
-              ),
-            ],
-          ),
-        ),
-
-        /// Messages page
+        const UploadScreen(),
         ListView.builder(
           reverse: true,
           itemCount: 2,
