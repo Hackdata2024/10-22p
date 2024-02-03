@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:geolocator/geolocator.dart';
 
 class AddPostService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -35,6 +36,14 @@ class AddPostService {
     TaskSnapshot storageSnapshot = await uploadTask.whenComplete(() => null);
     String postUrl = await storageSnapshot.ref.getDownloadURL();
 
+    // Get user's current location
+    Position? currentPosition = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.best);
+    if (currentPosition == null) {
+      print('Unable to retrieve user location.');
+      return;
+    }
+
     // Create a new document in the 'posts' collection
     String postId = _firestore.collection('posts').doc().id;
     await _firestore.collection('posts').doc(postId).set({
@@ -44,6 +53,7 @@ class AddPostService {
       'username': user.displayName ?? 'Anonymous',
       'description': description,
       'timestamp': FieldValue.serverTimestamp(),
+      'location': GeoPoint(currentPosition.latitude, currentPosition.longitude),
     });
 
     print('Post added successfully.');

@@ -33,6 +33,7 @@ dependencies:
   firebase_core: ^2.25.3
   firebase_storage: ^11.6.4
   image_picker: ^1.0.7
+  geolocator: ^10.1.0
 
   flutter:
     sdk: flutter
