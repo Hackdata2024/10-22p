@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "3852409740",
+    "project_id": "greenrep-fbb2a",
+    "storage_bucket": "greenrep-fbb2a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:3852409740:android:01121316c836cfcf3394a9",
+        "android_client_info": {
+          "package_name": "com.example.untitled"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpeLQXmaGLz7IoFidA9JHqh9W7AU-SjVM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
