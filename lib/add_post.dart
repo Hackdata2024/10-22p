@@ -18,6 +18,10 @@ class AddPostService {
       return;
     }
 
+    // Ask user for post description
+    print('Enter the description for the post:');
+    String description = stdin.readLineSync() ?? '';
+
     // Pick image from gallery
     XFile? image = await _picker.pickImage(source: ImageSource.gallery);
     if (image == null) {
@@ -38,6 +42,7 @@ class AddPostService {
       'postUrl': postUrl,
       'uid': user.uid,
       'username': user.displayName ?? 'Anonymous',
+      'description': description,
       'timestamp': FieldValue.serverTimestamp(),
     });
 
