@@ -56,7 +56,7 @@ class _NavigationExampleState extends State<NavigationExample> {
       ),
       body: <Widget>[
         const MyHome(),
-        const UploadScreen(),
+        const MyUploadScreen(),
         ListView.builder(
           reverse: true,
           itemCount: 2,
