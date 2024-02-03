@@ -1,21 +1,25 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart'; // Import Firestore
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:untitled/honess.dart';
 import 'package:untitled/splashing.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-      options: const FirebaseOptions(
-          apiKey: "AIzaSyBpeLQXmaGLz7IoFidA9JHqh9W7AU-SjVM",
-          appId: "1:3852409740:android:01121316c836cfcf3394a9",
-          messagingSenderId: "3852409740",
-          projectId: "greenrep-fbb2a",
-          storageBucket: 'gs://greenrep-fbb2a.appspot.com'
-      ));
-  runApp(DevicePreview(builder: (context)=>MyApp()));
+    options: const FirebaseOptions(
+        apiKey: "AIzaSyBpeLQXmaGLz7IoFidA9JHqh9W7AU-SjVM",
+        appId: "1:3852409740:android:01121316c836cfcf3394a9",
+        messagingSenderId: "3852409740",
+        projectId: "greenrep-fbb2a",
+        storageBucket: 'gs://greenrep-fbb2a.appspot.com'
+    ),
+  );
+  runApp(DevicePreview(builder: (context) => MyApp()));
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -76,7 +80,7 @@ class Myxpp extends StatelessWidget {
             body: TabBarView(
               children: [
                 _buildLoginTab(),
-                _buildSignupTab(),
+                _buildSignupTab(context),
               ],
             ),
           ),
@@ -117,17 +121,17 @@ class Myxpp extends StatelessWidget {
           height: 114,
         ),
         Container(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Image.asset('images/bottom_image_lighted.png'),
-            )
+          alignment: Alignment.bottomCenter,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset('images/bottom_image_lighted.png'),
+          ),
         )
       ],
     );
   }
 
-  Widget _buildSignupTab() {
+  Widget _buildSignupTab(BuildContext context) {
     return ListView(
       children: [
         Padding(
@@ -173,21 +177,21 @@ class Myxpp extends StatelessWidget {
           ),
         ),
         ElevatedButton(
-          onPressed: _signUp,
+          onPressed: () => _signUp(context),
           child: const Text('Sign Up'),
         ),
         Container(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Image.asset('images/bottom_image_lighted.png')
-            )
+          alignment: Alignment.bottomCenter,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset('images/bottom_image_lighted.png'),
+          ),
         )
       ],
     );
   }
 
-  Future<void> _signUp() async {
+  Future<void> _signUp(BuildContext context) async {
     try {
       final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -208,6 +212,12 @@ class Myxpp extends StatelessWidget {
           'username': username,
           'uid': user.uid,
         });
+
+        // Navigate to the home page
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => MyHome()), // Replace YourHomePage() with your actual home page widget
+        );
       }
     } catch (e) {
       print('Failed to sign up: $e');
