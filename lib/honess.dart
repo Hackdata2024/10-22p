@@ -38,8 +38,8 @@ class _NavigationExampleState extends State<NavigationExample> {
             label: 'Home',
           ),
           NavigationDestination(
-            icon: Badge(child: Icon(Icons.notifications_sharp)),
-            label: 'Notifications',
+            icon: Badge(child: Icon(Icons.add)),
+            label: 'Add',
           ),
           NavigationDestination(
             icon: Badge(
