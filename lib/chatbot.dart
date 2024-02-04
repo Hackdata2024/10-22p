@@ -20,7 +20,7 @@ class _IframeScreenState extends State<IframeScreen> {
 
     _iFrameElement.style.height = '98%';
     _iFrameElement.style.width = '100%';
-    _iFrameElement.src = 'https://console.dialogflow.com/api-client/demo/embedded/8c7a37ea-9f4c-4753-8fc7-cd90f4b55c20';
+    _iFrameElement.src = 'https://console.dialogflow.com/api-client/demo/embedded/ede26041-3e77-4aaa-b93b-aebb815206f8';
     _iFrameElement.style.border = 'none';
 
     // ignore: undefined_prefixed_name
@@ -37,13 +37,15 @@ class _IframeScreenState extends State<IframeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-        children: [
-          Expanded(
-            child: _iframeWidget,
-          ),
-        ],
-      );
+    return SafeArea(
+      child: Column(
+          children: [
+            Expanded(
+              child: _iframeWidget,
+            ),
+          ],
+        ),
+    );
   }
 }
 
