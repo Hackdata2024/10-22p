@@ -1,3 +1,4 @@
+DRIVE LINK: https://drive.google.com/file/d/1kuJKzwoMEISjFfdbUngWyZfA4r5rU7j8/view?usp=sharing
 HOW TO RUN THE CODE:
 1.) Go to pubspace.yaml and click on pub.get
 2.) Go to main.dart and click on get dependencies
@@ -5,8 +6,12 @@ HOW TO RUN THE CODE:
 4.) For running on a physical emulator, remove the device preview else dont remove t
 5.) flutter run main.dart
 6.) If device preview: you can see the results on devices else generate an apk file for buld and download it in ur mobiles
-S
 
+
+What It Does?
+Basically , it creates an impact in the society. If any person encounters trash of waste he can start a report on our app and his image will be shown to the nearby people in the feed link. They can join the cleanng drive and on basis of cleaning drive as well as items recycled they will be rewarded with some points(shared preferences implemented) which will motivate them to join more drives.
+Implemented a nlp based chat bot n our app which can answer environment queries of the user or app based queries . 
+We believe that this app if scaled will motivate people for a cleaner and greener environment
 
 
 
