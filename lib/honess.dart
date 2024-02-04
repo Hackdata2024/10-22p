@@ -21,7 +21,7 @@ class _NavigationExampleState extends State<NavigationExample> {
     return Scaffold(
       // if i am in my messaing nterface then
       // app bar isnt requred
-      appBar: currentPageIndex==2?null:AppBar(
+      appBar: (currentPageIndex==2||currentPageIndex==1)?null:AppBar(
         elevation: 0,
         scrolledUnderElevation: 0,
         title: Image.asset(
