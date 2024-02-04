@@ -4,6 +4,7 @@ import 'package:untitled/chatbot.dart';
 import 'package:untitled/recycle_material.dart';
 import 'package:untitled/upload_scree.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'feedpost.dart';
 import 'user_points.dart';
 class NavigationExample extends StatefulWidget {
   const NavigationExample({super.key});
@@ -21,11 +22,11 @@ class _NavigationExampleState extends State<NavigationExample> {
     return Scaffold(
       // if i am in my messaing nterface then
       // app bar isnt requred
-      appBar: (currentPageIndex==2||currentPageIndex==1)?null:AppBar(
+      appBar: (currentPageIndex==2||currentPageIndex==1||currentPageIndex==3)?null:AppBar(
         elevation: 0,
         scrolledUnderElevation: 0,
         title: Image.asset(
-          'images/logo_app_fi.png',
+          'images/image3.png',
           fit: BoxFit.contain,
           height: 200,
           width: 190,
@@ -57,7 +58,9 @@ class _NavigationExampleState extends State<NavigationExample> {
             ),
             label: 'Messages',
           ),
+          NavigationDestination(icon: Icon(Icons.feed), label: 'Reports'),
           NavigationDestination(icon: Icon(Icons.eco), label: 'Recycle')
+
         ],
       ),
       body: <Widget>[
@@ -104,6 +107,7 @@ class _NavigationExampleState extends State<NavigationExample> {
         //     );
         //   },
         // ),
+        FeedPost(),
         const Recycle()
       ][currentPageIndex],
     );

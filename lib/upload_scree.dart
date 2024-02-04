@@ -28,7 +28,7 @@ class _MyUploadScreenState extends State<MyUploadScreen> {
     final pickedImage = await picker.pickImage(source: ImageSource.gallery);
     if (pickedImage != null) {
       setState(() {
-        _selectedImagePath = pickedImage.path!;
+        _selectedImagePath = pickedImage.path;
       });
     }
   }
@@ -46,11 +46,17 @@ class _MyUploadScreenState extends State<MyUploadScreen> {
   Future<void> _submitPost() async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user = auth.currentUser;
+    if(user!=null)
+      {
+        print('User UID: ${user.uid}');
+        print('User Display Name: ${user.displayName}');
+        print('User Photo URL: ${user.photoURL}');
+      }
     String uid = user!.uid;
     String username = user.displayName ?? 'Unknown';
     String photoUrl = user.photoURL ?? '';
 
-    // Add your Firebase Firestore logic here
+
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     await firestore.collection('posts').add({
       'uid': uid,
@@ -155,6 +161,7 @@ class _MyUploadScreenState extends State<MyUploadScreen> {
                         onPressed: () async {
                           await _getUserLocation();
                           await _submitPost();
+                          _showSuccessDialog(context);
                         },
                         child: Text('Submit'),
                       ),
@@ -169,4 +176,23 @@ class _MyUploadScreenState extends State<MyUploadScreen> {
       ),
     );
   }
+}
+void _showSuccessDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Success'),
+        content: Text('Image and description successfully uploaded'),
+        actions: [
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).pop(); // Close the dialog
+            },
+            child: Text('OK'),
+          ),
+        ],
+      );
+    },
+  );
 }
