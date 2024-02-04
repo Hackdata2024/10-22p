@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/show_dialog.dart';
+import 'user_points.dart';
 Map<String, int> quantities = {};
 class Recycle extends StatefulWidget {
   const Recycle({super.key});
@@ -9,6 +10,8 @@ class Recycle extends StatefulWidget {
   @override
   State<Recycle> createState() => _RecycleState();
 }
+
+
 class _RecycleState extends State<Recycle> {
   int userPoints=0;
   @override
@@ -29,10 +32,12 @@ class _RecycleState extends State<Recycle> {
     prefs.setInt('userPoints', points);
   }
   _recycleItem(int totalLength) {
-    setState(() {
-      userPoints+=totalLength;
-      _saveUserPoints(userPoints);
-    });
+    var userPointsProvider=Provider.of<UserPointsProvider>(context,listen: false);
+    userPointsProvider.updateUserPoints(totalLength);
+    // setState(() {
+    //   userPoints+=totalLength;
+    //   _saveUserPoints(userPoints);
+    // });
   }
   @override
   Widget build(BuildContext context) {

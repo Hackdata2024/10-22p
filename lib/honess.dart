@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:untitled/recycle_material.dart';
 import 'package:untitled/upload_scree.dart';
+import 'user_points.dart';
 class NavigationExample extends StatefulWidget {
   const NavigationExample({super.key});
 
@@ -188,15 +190,17 @@ class FirstRowCardBigger extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Card(
+    var userPointsProvider = Provider.of<UserPointsProvider>(context);
+    int userPoints = userPointsProvider.userPoints;
+    return Card(
       child: Column(
         children: <Widget>[
           ListTile(
-            leading: Icon(Icons.person),
-            title: Text("Hi, Raghav"),
-            subtitle: Text("Your Points: "),
+            leading: const Icon(Icons.person),
+            title: const Text("Hi, Raghav"),
+            subtitle: Text("Your Points: $userPoints"),
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.all(16.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

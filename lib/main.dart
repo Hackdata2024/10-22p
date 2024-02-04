@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:provider/provider.dart';
 import 'package:untitled/honess.dart';
+import 'package:untitled/recycle_material.dart';
 import 'package:untitled/splashing.dart';
+import 'package:untitled/user_points.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,7 +20,12 @@ void main() async {
         storageBucket: 'gs://greenrep-fbb2a.appspot.com'
     ),
   );
-  runApp(DevicePreview(builder: (context) => MyApp()));
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => UserPointsProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
