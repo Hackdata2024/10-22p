@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -51,6 +53,7 @@ class Myxpp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       home: DefaultTabController(
         length: 2,
@@ -89,7 +92,7 @@ class Myxpp extends StatelessWidget {
             },
             body: TabBarView(
               children: [
-                _buildLoginTab(),
+                _buildLoginTab(context),
                 _buildSignupTab(context),
               ],
             ),
@@ -99,7 +102,7 @@ class Myxpp extends StatelessWidget {
     );
   }
 
-  Widget _buildLoginTab() {
+  Widget _buildLoginTab(BuildContext context) {
     return ListView(
       children: [
         Padding(
@@ -124,7 +127,7 @@ class Myxpp extends StatelessWidget {
           ),
         ),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () =>_login(context),
           child: Text('Login'),
         ),
         const SizedBox(
@@ -140,6 +143,48 @@ class Myxpp extends StatelessWidget {
       ],
     );
   }
+  Future<void> _login(BuildContext context) async {
+    try {
+      final FirebaseAuth _auth = FirebaseAuth.instance;
+
+      final String email = _emailController.text.trim();
+      final String password = _passwordController.text.trim();
+
+      final UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      final User? user = userCredential.user;
+      if (user != null) {
+        // Navigate to the home page
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const NavigationExample()),
+        );
+      }
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Login Failed'),
+            content: Text('Failed to log in: $e'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+
+    }
+  }
+
 
   Widget _buildSignupTab(BuildContext context) {
     return ListView(
