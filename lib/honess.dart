@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:untitled/chatbot.dart';
 import 'package:untitled/recycle_material.dart';
 import 'package:untitled/upload_scree.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'user_points.dart';
 class NavigationExample extends StatefulWidget {
   const NavigationExample({super.key});
@@ -194,6 +195,7 @@ class FirstRowCardBigger extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    User? _user = FirebaseAuth.instance.currentUser;
     var userPointsProvider = Provider.of<UserPointsProvider>(context);
     int userPoints = userPointsProvider.userPoints;
     return Card(
@@ -201,7 +203,7 @@ class FirstRowCardBigger extends StatelessWidget {
         children: <Widget>[
           ListTile(
             leading: const Icon(Icons.person),
-            title: const Text("Hi, Raghav"),
+            title:  Text("Hi, ${_user?.displayName}"),
             subtitle: Text("Your Points: $userPoints"),
           ),
           const Padding(
@@ -209,8 +211,7 @@ class FirstRowCardBigger extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Footprint saved:"),
-                Text("League:"),
+                Text("SAVE THE CARBON FOOTPRINTS NOW")
               ],
             ),
           ),

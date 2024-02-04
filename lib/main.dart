@@ -245,7 +245,6 @@ class Myxpp extends StatelessWidget {
       ],
     );
   }
-
   Future<void> _signUp(BuildContext context) async {
     try {
       final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -261,6 +260,9 @@ class Myxpp extends StatelessWidget {
 
       final User? user = userCredential.user;
       if (user != null) {
+        // Set the display name for the user
+        await user.updateProfile(displayName: username);
+
         // Save user data to Firestore
         await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
           'email': email,
@@ -271,11 +273,12 @@ class Myxpp extends StatelessWidget {
         // Navigate to the home page
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const NavigationExample()), // Replace YourHomePage() with your actual home page widget
+          MaterialPageRoute(builder: (context) => const NavigationExample()),
         );
       }
     } catch (e) {
       print('Failed to sign up: $e');
     }
   }
+
 }
