@@ -21,9 +21,11 @@ void main() async {
     ),
   );
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => UserPointsProvider(),
-      child: const MyApp(),
+    DevicePreview(
+      builder: (context) => ChangeNotifierProvider(
+        create: (context) => UserPointsProvider(),
+        child: const MyApp(),
+      ),
     ),
   );
 }

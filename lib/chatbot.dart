@@ -37,15 +37,13 @@ class _IframeScreenState extends State<IframeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
+    return Column(
         children: [
           Expanded(
             child: _iframeWidget,
           ),
         ],
-      ),
-    );
+      );
   }
 }
 
